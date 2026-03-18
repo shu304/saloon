@@ -1,0 +1,43 @@
+<select id="category">
+  <option value="all">全部</option>
+  <option value="おでん">おでん</option>
+  <option value="一品">一品</option>
+</select>
+
+<input type="text" id="search" placeholder="検索">
+
+<div id="list"></div>
+
+<script>
+const menu = [
+  { name: "大根", amount: "1個", category: "おでん" },
+  { name: "たまご", amount: "1個", category: "おでん" },
+  { name: "唐揚げ", amount: "5個", category: "一品" }
+];
+
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+const category = document.getElementById("category");
+
+function display(){
+  const filtered = menu.filter(item => {
+    return (category.value === "all" || item.category === category.value)
+      && item.name.includes(search.value);
+  });
+
+  list.innerHTML = "";
+  filtered.forEach(item => {
+    list.innerHTML += `
+      <div>
+        <h3>${item.name}</h3>
+        <p>個数：${item.amount}</p>
+      </div>
+    `;
+  });
+}
+
+search.addEventListener("input", display);
+category.addEventListener("change", display);
+
+display();
+</script>
