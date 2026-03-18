@@ -1,43 +1,438 @@
-<select id="category">
-  <option value="all">全部</option>
-  <option value="おでん">おでん</option>
-  <option value="一品">一品</option>
-</select>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="manifest" href="manifest.json">
 
-<input type="text" id="search" placeholder="検索">
+<meta name="theme-color" content="#111111">
 
-<div id="list"></div>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>那古野サルーン キッチンマニュアル</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Hiragino Sans",sans-serif;
+  background:linear-gradient(to bottom,#fff8f0,#ffe0c7);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ヘッダー */
+header{
+  background:#5c3d2e;
+  color:white;
+  text-align:center;
+  padding:22px;
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+/* メイン中央 */
+.container{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  padding:40px 20px;
+}
+
+.content{
+  width:100%;
+  max-width:520px;
+}
+
+/* お通しカード */
+.details-card{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:30px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.details-card summary{
+  font-weight:bold;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.details-card ol{
+  margin-top:15px;
+  padding-left:20px;
+  line-height:1.9;
+}
+
+/* カテゴリー */
+.category{
+  display:block;
+  background:white;
+  padding:18px;
+  margin:15px 0;
+  border-radius:20px;
+  text-decoration:none;
+  color:#333;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
+  transition:0.2s;
+  text-align:center;
+}
+
+.category:hover{
+  background:#f7efe6;
+}
+
+.category:active{
+  transform:scale(0.97);
+}
+
+/* 区切り線 */
+.divider{
+  margin:60px 0 30px 0;
+  border:none;
+  border-top:1px solid #e0c9b3;
+}
+
+/* セクションタイトル */
+.section-title{
+  margin-bottom:20px;
+  font-size:16px;
+  color:#5c3d2e;
+  text-align:center;
+}
+
+/* フォーム */
+form{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  font-size:14px;
+}
+
+textarea{
+  height:140px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  background:#b48a5a;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{
+  background:#a07444;
+}
+
+button:active{
+  transform:scale(0.97);
+}
+
+/* フッター */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+  color:#777;
+}
+.course-grid{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin:30px 0 50px;
+}
+.course-card{
+  background:#ffffff;   /* ← 真っ白 */
+  width:160px;
+  height:120px;
+  border-radius:20px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  transition:0.2s;
+}
+
+.course-card:hover{
+  transform:translateY(-4px);
+}
+
+.course-card .price{
+  font-size:22px;   /* 少し大きめ */
+  font-weight:bold;
+  color:black;
+}
+.spinner{
+  width:40px;
+  height:40px;
+  border:4px solid rgba(255,255,255,0.3);
+  border-top:4px solid white;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{ transform:rotate(360deg); }
+}
+
+.menu-photo {
+    width: 100%;
+    max-width: 400px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+/* ヘッダー */
+#app-header {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+  position: sticky;
+  top: 0;
+}
+
+/* 検索バー */
+#search {
+  width: 90%;
+  margin: 10px auto;
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* カテゴリ */
+.container {
+  padding: 10px;
+}
+
+.category {
+  display: block;
+  background: white;
+  margin: 8px 0;
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+/* 検索結果 */
+.result-item {
+  background: white;
+  margin: 8px;
+  padding: 12px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header id="app-header" style="cursor:pointer;">
+那古野サルーン<br>キッチンマニュアル
+</header>
+<input type="text" id="search" placeholder="商品名で検索">
+
+<div id="searchResults"></div>
+
+<!-- 📂 カテゴリ -->
+<div class="container" id="categoryList">
+  <a class="category" href="oden.html">🍢 おでん</a>
+  <a class="category" href="ippin.html">🍳 一品料理</a>
+  <a class="category" href="yasai.html">🥬 サラダ</a>
+  <a class="category" href="yaki.html">🔥 焼き</a>
+  <a class="category" href="age.html">🍤 揚げ</a>
+  <a class="category" href="shokuji.html">🍚 ご飯・そば</a>
+  <a class="category" href="kanmi.html">🍰 デザート</a>
+</div>
 
 <script>
+// 🍽 メニュー（ここを増やすだけでOK）
 const menu = [
-  { name: "大根", amount: "1個", category: "おでん" },
-  { name: "たまご", amount: "1個", category: "おでん" },
-  { name: "唐揚げ", amount: "5個", category: "一品" }
+  { name: "大根", amount: "1個", category: "おでん", link: "oden.html" },
+  { name: "たまご", amount: "1個", category: "おでん", link: "oden.html" },
+  { name: "牛すじ", amount: "3〜4本", category: "おでん", link: "oden.html" },
+
+  { name: "唐揚げ", amount: "5個", category: "一品料理", link: "ippin.html" },
+  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" }
 ];
 
-const list = document.getElementById("list");
 const search = document.getElementById("search");
-const category = document.getElementById("category");
+const results = document.getElementById("searchResults");
+const categoryList = document.getElementById("categoryList");
 
-function display(){
-  const filtered = menu.filter(item => {
-    return (category.value === "all" || item.category === category.value)
-      && item.name.includes(search.value);
-  });
+// 🔍 検索処理
+search.addEventListener("input", () => {
+  const value = search.value.trim();
 
-  list.innerHTML = "";
+  // 何も入力されてない時
+  if (value === "") {
+    results.innerHTML = "";
+    categoryList.style.display = "block";
+    return;
+  }
+
+  // カテゴリ隠す
+  categoryList.style.display = "none";
+
+  // 検索
+  const filtered = menu.filter(item =>
+    item.name.includes(value)
+  );
+
+  results.innerHTML = "";
+
+  if (filtered.length === 0) {
+    results.innerHTML = "<p style='padding:10px;'>該当なし</p>";
+    return;
+  }
+
   filtered.forEach(item => {
-    list.innerHTML += `
-      <div>
-        <h3>${item.name}</h3>
-        <p>個数：${item.amount}</p>
+    results.innerHTML += `
+      <div class="result-item">
+        <strong>${item.name}</strong><br>
+        個数：${item.amount}<br>
+        <small>${item.category}</small><br>
+        <a href="${item.link}">詳細へ</a>
       </div>
     `;
   });
-}
-
-search.addEventListener("input", display);
-category.addEventListener("change", display);
-
-display();
+});
 </script>
+
+
+</form>
+
+</div>
+</div>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(() => console.log("Service Worker 登録成功"))
+    .catch(err => console.log("登録失敗", err));
+}
+</script>
+<div id="update-notice" style="
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+color:white;
+padding:10px 20px;
+border-radius:30px;
+display:none;
+z-index:9999;
+cursor:pointer;">
+🔄 新しい更新があります。タップして更新
+</div>
+
+<script>
+let newWorker;
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(reg => {
+
+      reg.addEventListener("updatefound", () => {
+        newWorker = reg.installing;
+
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+            document.getElementById("update-notice").style.display = "block";
+          }
+        });
+      });
+    });
+
+  document.getElementById("update-notice").addEventListener("click", () => {
+    location.reload();
+  });
+}
+</script>
+<script>
+document.getElementById("app-header").addEventListener("click", async () => {
+
+  const overlay = document.getElementById("loading-overlay");
+  overlay.style.display = "flex";
+
+  try {
+    // キャッシュ全削除
+    const keys = await caches.keys();
+    await Promise.all(keys.map(key => caches.delete(key)));
+
+    // SW更新要求
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: "SKIP_WAITING" });
+    }
+
+    // 少し待ってから強制リロード
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 800);
+
+  } catch (error) {
+    console.log("更新失敗", error);
+    overlay.style.display = "none";
+  }
+});
+</script>
+
+
+
+<footer>
+© Nagono Saloon Manual
+</footer>
+
+<!-- 更新中オーバーレイ -->
+<div id="loading-overlay" style="
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+color:white;
+font-size:18px;
+font-weight:bold;
+flex-direction:column;
+">
+  <div style="margin-bottom:15px;">🔄 最新データを取得中...</div>
+  <div class="spinner"></div>
+</div>
+
+</body>
+</html>
