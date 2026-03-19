@@ -72,18 +72,23 @@ header{
 
 /* カテゴリー */
 .category{
-  display:block;
-  background:white;
-  padding:18px;
-  margin:15px 0;
-  border-radius:20px;
-  text-decoration:none;
-  color:#333;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 6px 15px rgba(0,0,0,0.15);
-  transition:0.2s;
-  text-align:center;
+  background: #fff;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.category br {
+  margin-bottom: 5px;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 15px;
 }
 
 .category:hover{
@@ -158,34 +163,7 @@ footer{
   font-size:12px;
   color:#777;
 }
-.course-grid{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin:30px 0 50px;
-}
-.course-card{
-  background:#ffffff;   /* ← 真っ白 */
-  width:160px;
-  height:120px;
-  border-radius:20px;
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  transition:0.2s;
-}
 
-.course-card:hover{
-  transform:translateY(-4px);
-}
-
-.course-card .price{
-  font-size:22px;   /* 少し大きめ */
-  font-weight:bold;
-  color:black;
-}
 .spinner{
   width:40px;
   height:40px;
@@ -223,33 +201,50 @@ footer{
   padding: 12px;
   border-radius: 10px;
 }
+#searchResults {
+  margin: 10px;
+}
+
+.result-item {
+  background: white;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+}
 </style>
 </head>
 
 <body>
 
 <header id="app-header" style="cursor:pointer;">
-那古野サルーン<br>キッチンマニュアル
+那古野サルーン<br>ホールマニュアル
 </header>
-<input type="text" id="search" placeholder="商品名で検索">
+<input type="text" id="search" placeholder="🔍 商品名で検索（例：餃子・だいこん）">
 
 <div id="searchResults"></div>
 
 <!-- 📂 カテゴリ -->
-<div class="container" id="categoryList">
+<div class="category-grid">
+
   <a class="category" href="oden.html">🍢 おでん</a>
   <a class="category" href="ippin.html">🍳 一品料理</a>
   <a class="category" href="yasai.html">🥬 サラダ</a>
+
   <a class="category" href="yaki.html">🔥 焼き</a>
   <a class="category" href="age.html">🍤 揚げ</a>
   <a class="category" href="shokuji.html">🍚 ご飯・そば</a>
+
   <a class="category" href="kanmi.html">🍰 デザート</a>
+  <a href="drink.html" class="category">🍺<br>ドリンク</a>
+  <div></div>
 </div>
+
 
 <script>
 // 🍽 メニュー（ここを増やすだけでOK）
 const menu = [
   { name: "大根", amount: "1個", category: "おでん", link: "oden.html" },
+  { name: "菜の花の梅おでん", amount: "1皿", category: "🍢 おでん", link: "oden.html", keywords: ["菜の花","梅"] },
   { name: "たまご", amount: "1個", category: "おでん", link: "oden.html" },
   { name: "牛すじ", amount: "3〜4本", category: "おでん", link: "oden.html" },
 
@@ -300,6 +295,41 @@ search.addEventListener("input", () => {
         個数：${item.amount}<br>
         <small>${item.category}</small><br>
         <a href="${item.link}">詳細へ</a>
+      </div>
+    `;
+  });
+});
+const categoryGrid = document.querySelector(".category-grid");
+
+search.addEventListener("input", () => {
+  const value = search.value.trim();
+
+  if (value === "") {
+    results.innerHTML = "";
+    categoryGrid.style.display = "grid";
+    return;
+  }
+
+
+  const filtered = menu.filter(item =>
+    item.name.includes(value) ||
+    (item.keywords && item.keywords.some(k => k.includes(value)))
+  );
+
+  results.innerHTML = "";
+
+  if (filtered.length === 0) {
+    results.innerHTML = "<p style='padding:10px;'>該当なし</p>";
+    return;
+  }
+
+  filtered.forEach(item => {
+    results.innerHTML += `
+      <div class="result-item">
+        <strong>${item.name}</strong><br>
+        個数：${item.amount}<br>
+        <small>${item.category}</small><br>
+        <a href="${item.link}?item=${encodeURIComponent(item.name)}">見る</a>
       </div>
     `;
   });
