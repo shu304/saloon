@@ -23,7 +23,7 @@
 <div class="container">
 
 <details>
-    <summary>🌼 菜の花の梅おでん</summary>
+    <summary>菜の花の梅おでん</summary>
     <ol>
         <li>タッパーに春玉葱1つと浸るくらいのおでん出汁を入れる。</li>
     </ol>
@@ -31,7 +31,7 @@
 </details>
 
 <details>
-    <summary>🧅 春玉葱のおでん</summary>
+    <summary>春玉葱のおでん</summary>
     <ol>
         <li>タッパーに春玉葱1つと浸るくらいのおでん出汁を入れる。</li>
     </ol>
@@ -39,7 +39,7 @@
 </details>
 
 <details>
-    <summary>🦪 牡蠣のおでん</summary>
+    <summary>牡蠣のおでん</summary>
     <ol>
         <li>牡蠣4つと出汁を鍋で煮込む。</li>
     </ol>
@@ -47,7 +47,7 @@
 </details>
 
 <details>
-    <summary>🥔 里芋</summary>
+    <summary>里芋</summary>
     <ol>
         <li>タッパーに里芋を3~4個入れる。</li>
     </ol>
@@ -55,7 +55,7 @@
 </details>
 
 <details>
-    <summary>🥬 レタス</summary>
+    <summary>レタス</summary>
     <ol>
         <li>120g程度のレタスを出す。</li>
     </ol>
@@ -63,7 +63,7 @@
 </details>
 
 <details>
-    <summary>🥦 ブロッコリー</summary>
+    <summary>ブロッコリー</summary>
     <ol>
         <li>ブロッコリーを100g程度出す。</li>
     </ol>
@@ -71,7 +71,7 @@
 </details>
 
 <details>
-    <summary>🥗 京水菜</summary>
+    <summary>京水菜</summary>
     <ol>
         <li>京水菜を70g程度出す。</li>
     </ol>
@@ -79,7 +79,7 @@
 </details>
 
 <details>
-    <summary>🌊 刺身わかめ</summary>
+    <summary>刺身わかめ</summary>
     <ol>
         <li>冷凍庫の刺身わかめを解凍する。</li>
     </ol>
@@ -87,7 +87,7 @@
 </details>
 
 <details>
-    <summary>🥟 餃子</summary>
+    <summary>餃子</summary>
     <ol>
         <li>餃子4つとおでん出汁を煮込む。</li>
     </ol>
@@ -95,7 +95,7 @@
 </details>
 
 <details>
-    <summary>🍆 焼きナス</summary>
+    <summary>焼きナス</summary>
     <ol>
         <li>ナス1本と出汁を一緒に煮込む。</li>
     </ol>
@@ -103,7 +103,7 @@
 </details>
 
 <details>
-    <summary>🐙 明石焼き</summary>
+    <summary>明石焼き</summary>
     <ol>
         <li>タッパーに明石焼きを4つ入れる。</li>
     </ol>
@@ -111,7 +111,7 @@
 </details>
 
 <details>
-    <summary>🍅 トマト</summary>
+    <summary>トマト</summary>
     <ol>
         <li>タッパーにトマト1つと浸るくらいのおでん出汁を入れる。</li>
     </ol>
@@ -119,7 +119,7 @@
 </details>
 
 <details>
-    <summary>🧊 手造り豆腐</summary>
+    <summary>手造り豆腐</summary>
     <ol>
         <li>豆腐150g程度を食べやすい大きさに切る。</li>
     </ol>
@@ -127,7 +127,7 @@
 </details>
 
 <details>
-    <summary>🐷 豚しゃぶ</summary>
+    <summary>豚しゃぶ</summary>
     <ol>
         <li>冷凍庫の豚肉を解凍する。</li>
     </ol>
@@ -135,7 +135,7 @@
 </details>
 
 <details>
-    <summary>🐮 牛すじ</summary>
+    <summary>牛すじ</summary>
     <ol>
         <li>おでん出汁と牛すじ1個を煮込む。</li>
     </ol>
@@ -143,7 +143,7 @@
 </details>
 
 <details>
-    <summary>🍖 角煮</summary>
+    <summary>角煮</summary>
     <ol>
         <li>冷凍庫の角煮をレンジで1分解凍する。</li>
     </ol>
@@ -151,7 +151,7 @@
 </details>
 
 <details>
-    <summary>🔥 牛ホルモン</summary>
+    <summary>牛ホルモン</summary>
     <ol>
         <li>冷凍庫の牛ホルモンをレンジで1分解凍する。</li>
     </ol>
@@ -182,6 +182,50 @@
 </div>
 
 <script>
+// 🔍 おでんデータ（ここに追加していく）
+const odenMenu = [
+  { name: "菜の花の梅おでん", amount: "1皿", keywords: ["菜の花","梅"] },
+  { name: "春玉葱のおでん", amount: "1個", keywords: ["玉ねぎ","たまねぎ"] },
+  { name: "牡蠣のおでん", amount: "4つ", keywords: ["牡蠣","カキ"] },
+  { name: "里芋", amount: "3〜4個", keywords: ["いも"] },
+  { name: "レタス", amount: "120g", keywords: [] },
+  { name: "ブロッコリー", amount: "100g", keywords: [] },
+  { name: "京水菜", amount: "70g", keywords: ["水菜"] },
+  { name: "刺身わかめ", amount: "適量", keywords: ["わかめ"] },
+  { name: "餃子", amount: "4つ", keywords: [] },
+  { name: "焼きナス", amount: "1本", keywords: ["ナス","なす"] },
+  { name: "明石焼き", amount: "4つ", keywords: [] },
+  { name: "トマト", amount: "1個", keywords: [] },
+  { name: "手造り豆腐", amount: "150g", keywords: ["豆腐"] },
+  { name: "豚しゃぶ", amount: "1人前", keywords: ["豚"] },
+  { name: "牛すじ", amount: "1個", keywords: [] },
+  { name: "角煮", amount: "1個", keywords: [] },
+  { name: "牛ホルモン", amount: "1人前", keywords: ["ホルモン"] }
+];
+
+// 🔍 検索バーがあれば連動
+const search = document.getElementById("search");
+
+if(search){
+  search.addEventListener("input", () => {
+    const value = search.value.trim();
+
+    // 全details取得
+    const items = document.querySelectorAll("details");
+
+    items.forEach((detail, index) => {
+      const menuItem = odenMenu[index];
+
+      if (!menuItem) return;
+
+      const hit =
+        menuItem.name.includes(value) ||
+        menuItem.keywords.some(k => k.includes(value));
+
+      detail.style.display = hit ? "block" : "none";
+    });
+  });
+}
 function reloadWithOverlay() {
     const overlay = document.getElementById("loading-overlay");
     overlay.style.display = "flex";

@@ -206,22 +206,6 @@ footer{
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-body {
-  font-family: sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-}
-
-/* ヘッダー */
-#app-header {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 18px;
-  position: sticky;
-  top: 0;
-}
 
 /* 検索バー */
 #search {
@@ -230,22 +214,6 @@ body {
   display: block;
   padding: 10px;
   font-size: 16px;
-}
-
-/* カテゴリ */
-.container {
-  padding: 10px;
-}
-
-.category {
-  display: block;
-  background: white;
-  margin: 8px 0;
-  padding: 15px;
-  text-decoration: none;
-  color: black;
-  border-radius: 10px;
-  font-size: 18px;
 }
 
 /* 検索結果 */
@@ -286,7 +254,13 @@ const menu = [
   { name: "牛すじ", amount: "3〜4本", category: "おでん", link: "oden.html" },
 
   { name: "唐揚げ", amount: "5個", category: "一品料理", link: "ippin.html" },
-  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" }
+  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" },
+  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" },
+  { name: "ポテトサラダ", amount: "1皿", category: "🍰 デザート", link: "yasai.html" },
+  { name: "抹茶アイス", amount: "1皿", category: "🍰 デザート", link: "kanmi.html" },
+  { name: "バニラ最中", amount: "1皿", category: "🍰 デザート", link: "kanmi.html" },
+  { name: "わらびもち", amount: "5個", category: "🍰 デザート", link: "kanmi.html" },
+  { name: "バナナトロン", amount: "4切れ", category: "🍰 デザート", link: "kanmi.html" }
 ];
 
 const search = document.getElementById("search");

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デザートマニュアル</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header"onclick="reloadWithOverlay()">
+    那古野サルーン<br>
+    🍰 デザートマニュアル
+</div>
+
+<div class="sub-nav">
+    <a href="index.html" class="button small">← トップへ戻る</a>
+</div>
+
+<div class="container">
+
+
+    <summary>抹茶アイス</summary>
+    <li>抹茶がそのまま</li>
+    <img src="images/matcha_ice.jpg"
+         alt="抹茶アイス完成写真"
+         class="menu-photo"
+         loading="lazy">
+
+    <summary>バニラ最中</summary>
+    
+        <li>最中の上にバニラとあんこ</li>
+
+    <img src="images/vanilla_monaka.jpg"
+         alt="バニラ最中完成写真"
+         class="menu-photo"
+         loading="lazy">
+
+    <summary>わらび餅</summary>
+    <p class="note">※1人前5個、コースの時は1人前2個</p>
+        <li>わらびもち5個に黒蜜</li>
+
+    <img src="images/warabi_mochi.jpg"
+         alt="わらび餅完成写真"
+         class="menu-photo"
+         loading="lazy">
+
+    <summary>バナナトロン</summary>
+        <li>春巻きの皮にバナナとあんこを入れて揚げたデザート</li>
+    <img src="images/banana_toron.jpg"
+         alt="バナナトロン完成写真"
+         class="menu-photo"
+         loading="lazy">
+
+
+<div class="link-grid">
+    <a class="category" href="oden.html">🍢<br> おでん</a>
+    <a class="category" href="ippin.html">🍳<br> 一品料理</a>
+    <a class="category" href="yasai.html">🥬<br> サラダ</a>
+    <a class="category" href="yaki.html">🔥<br> 焼き</a>
+    <a class="category" href="age.html">🍤<br> 揚げ</a>
+    <a class="category" href="shokuji.html">🍚<br> ご飯・そば</a>
+</div>
+
+
+<a href="index.html" class="button">← トップに戻る</a>
+
+</div>
+<footer>
+© Nagono Saloon Manual
+</footer>
+<!-- 更新中オーバーレイ -->
+<div id="loading-overlay">
+  <div style="margin-bottom:15px;">🔄 最新データを取得中...</div>
+  <div class="spinner"></div>
+</div>
+
+<script>
+// 🔍 URLから商品名を取得
+const params = new URLSearchParams(window.location.search);
+const target = params.get("item");
+
+if (target) {
+  const detailsList = document.querySelectorAll("details");
+
+  detailsList.forEach(detail => {
+    const summaryText = detail.querySelector("summary").textContent;
+
+    if (summaryText.includes(target)) {
+      // 開く
+      detail.open = true;
+
+      // スクロール
+      detail.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      // 他を消したい場合はこれ👇（任意）
+      // detail.style.display = "block";
+    } else {
+      // 他を消す場合（ONにしたいならコメント外す）
+      // detail.style.display = "none";
+    }
+  });
+}
+
+function reloadWithOverlay() {
+    const overlay = document.getElementById("loading-overlay");
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+        location.reload();
+    }, 800); // 0.8秒後に更新
+}
+</script>
+</body>
+</html>
