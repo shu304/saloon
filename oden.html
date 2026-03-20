@@ -6,7 +6,30 @@
 <title>おでんマニュアル</title>
 <link rel="stylesheet" href="style.css">
 </head>
+<style>
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
 
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+details {
+  background: white;
+  border-radius: 10px;
+  padding: 8px;
+}
+/* 🔥 期間限定だけ中央1列 */
+.special {
+  grid-column: span 2; /* 横いっぱい使う */
+  text-align: center;
+}
+</style>
 <body class="oden">
 
 <div class="header" onclick="reloadWithOverlay()">
@@ -21,146 +44,54 @@
 </div>
 
 <div class="container">
-
-<details>
-    <summary>菜の花の梅おでん</summary>
-    
-    <img src="images/nanohana.jpg" alt="菜の花のおでん完成写真" class="menu-photo" loading="lazy">
+<details class="special">
+  <summary>菜の花の梅おでん(2名以上でのシェアおすすめ)</summary>
+</details>
+<details class="special">
+  <summary>牡蠣のおでん(４つ)</summary>
+</details>
+<details class="special">
+  <summary>春玉葱のおでん(2名以上でのシェアおすすめ)</summary>
 </details>
 
-<details>
-    <summary>春玉葱のおでん</summary>
-    <img src="images/harutamanegi.jpg" alt="春玉葱のおでん完成写真" class="menu-photo" loading="lazy">
-</details>
+<div class="menu-grid">
 
-<details>
-    <summary>牡蠣のおでん</summary>
-    <ol>
-        <li>牡蠣4つと出汁を鍋で煮込む。</li>
-    </ol>
-    <img src="images/kaki.jpg" alt="牡蠣のおでん完成写真" class="menu-photo" loading="lazy">
-</details>
+  <!-- 左：15個 -->
+  <div class="column">
+    <details><summary>白滝(３つ)</summary></details>
+<details><summary>こんにゃく(1~2個)</summary></details>
+<details><summary>厚揚げ(１つを半分に切る)</summary></details>
+<details><summary>ごぼ天(１つを半分に切る)</summary></details>
+<details><summary>玉子(１個)</summary></details>
+<details><summary>がんも(１個を４等分)(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>餅入り巾着(１個)</summary></details>
+<details><summary>白はんぺん(２つ入り)</summary></details>
+<details><summary>ちくわ(１つを半分に切る)</summary></details>
+<details><summary>大根(１個を４等分)(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>骨付きウインナー(１個)</summary></details>
+<details><summary>つくね(４個)</summary></details>
+<details><summary>京生麩(ゆず味・よもぎ味が１個ずつ)</summary></details>
+<details><summary>巻湯葉(４本)</summary></details>
+<details><summary>里芋(３～４個)</summary></details>
+  </div>
 
-<details>
-    <summary>里芋</summary>
-    <ol>
-        <li>タッパーに里芋を3~4個入れる。</li>
-    </ol>
-    <img src="images/satoimo.jpg" alt="里芋完成写真" class="menu-photo" loading="lazy">
-</details>
+  <!-- 右：13個 -->
+  <div class="column">
+<details><summary>レタス(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>ブロッコリー(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>京水菜(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>刺身わかめ(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>餃子(4つ)</summary></details>
+<details><summary>焼きナス(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>明石焼き(4つ)</summary></details>
+<details><summary>トマト(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>手造り豆腐(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>豚しゃぶ(4切れ)</summary></details>
+<details><summary>牛すじ(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>角煮(2名以上でのシェアおすすめ)</summary></details>
+<details><summary>牛ホルモン(2名以上でのシェアおすすめ)</summary></details>
+  </div>
 
-<details>
-    <summary>レタス</summary>
-    <ol>
-        <li>120g程度のレタスを出す。</li>
-    </ol>
-    <img src="images/lettuce.jpg" alt="レタス完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>ブロッコリー</summary>
-    <ol>
-        <li>ブロッコリーを100g程度出す。</li>
-    </ol>
-    <img src="images/broccoli.jpg" alt="ブロッコリー完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>京水菜</summary>
-    <ol>
-        <li>京水菜を70g程度出す。</li>
-    </ol>
-    <img src="images/kyomizuna.jpg" alt="京水菜完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>刺身わかめ</summary>
-    <ol>
-        <li>冷凍庫の刺身わかめを解凍する。</li>
-    </ol>
-    <img src="images/wakame.jpg" alt="刺身わかめ完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>餃子</summary>
-    <ol>
-        <li>餃子4つとおでん出汁を煮込む。</li>
-    </ol>
-    <img src="images/gyoza.jpg" alt="餃子完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>焼きナス</summary>
-    <ol>
-        <li>ナス1本と出汁を一緒に煮込む。</li>
-    </ol>
-    <img src="images/yakiniku-nasu.jpg" alt="焼きナス完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>明石焼き</summary>
-    <ol>
-        <li>タッパーに明石焼きを4つ入れる。</li>
-    </ol>
-    <img src="images/akashiyaki.jpg" alt="明石焼き完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>トマト</summary>
-    <ol>
-        <li>タッパーにトマト1つと浸るくらいのおでん出汁を入れる。</li>
-    </ol>
-    <img src="images/tomato.jpg" alt="トマト完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>手造り豆腐</summary>
-    <ol>
-        <li>豆腐150g程度を食べやすい大きさに切る。</li>
-    </ol>
-    <img src="images/tofu.jpg" alt="手造り豆腐完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>豚しゃぶ</summary>
-    <ol>
-        <li>冷凍庫の豚肉を解凍する。</li>
-    </ol>
-    <img src="images/butashabu.jpg" alt="豚しゃぶ完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>牛すじ</summary>
-    <ol>
-        <li>おでん出汁と牛すじ1個を煮込む。</li>
-    </ol>
-    <img src="images/gyusuji.jpg" alt="牛すじ完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>角煮</summary>
-    <ol>
-        <li>冷凍庫の角煮をレンジで1分解凍する。</li>
-    </ol>
-    <img src="images/kakuni.jpg" alt="角煮完成写真" class="menu-photo" loading="lazy">
-</details>
-
-<details>
-    <summary>牛ホルモン</summary>
-    <ol>
-        <li>冷凍庫の牛ホルモンをレンジで1分解凍する。</li>
-    </ol>
-    <img src="images/horumon.jpg" alt="牛ホルモン完成写真" class="menu-photo" loading="lazy">
-</details>
-
-
-<div class="link-grid">
-    <a class="category" href="ippin.html">🍳<br> 一品料理</a>
-    <a class="category" href="yasai.html">🥬<br> サラダ</a>
-    <a class="category" href="yaki.html">🔥<br> 焼き</a>
-    <a class="category" href="age.html">🍤<br> 揚げ</a>
-    <a class="category" href="shokuji.html">🍚<br> ご飯・そば</a>
-    <a class="category" href="kanmi.html">🍰<br> デザート</a>
 </div>
 
 <a href="index.html" class="button">← トップに戻る</a>

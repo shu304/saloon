@@ -86,7 +86,7 @@ header{
 }
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* ← 2列 */
   gap: 15px;
   padding: 15px;
 }
@@ -187,11 +187,13 @@ footer{
 
 /* 検索バー */
 #search {
-  width: 90%;
-  margin: 10px auto;
+  width: 92%;
+  margin: 15px auto;
   display: block;
-  padding: 10px;
-  font-size: 16px;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 15px;
+  border: none;
 }
 
 /* 検索結果 */
@@ -211,6 +213,16 @@ footer{
   margin-bottom: 8px;
   border-radius: 10px;
 }
+.notice {
+  background: #fff8f0;
+  border-left: 4px solid #ff9800;
+  padding: 12px 14px;
+  margin: 12px 15px;
+  font-size: 16px; /* ←ここ上げる */
+  border-radius: 10px;
+  color: #333;
+  line-height: 1.6; /* ←読みやすく */
+}
 </style>
 </head>
 
@@ -219,6 +231,13 @@ footer{
 <header id="app-header" style="cursor:pointer;">
 那古野サルーン<br>ホールマニュアル
 </header>
+<p class="notice">
+※おでんの盛り合わせとお造り盛り合わせは2人前からの注文しかできません
+</p>
+<p class="notice">
+※おでんの盛り合わせは白滝～里芋の中から2名分で4種類ほど入ってます。
+そこから1名分追加の3名分で2種類追加の合計6種類ほど
+</p>
 <input type="text" id="search" placeholder="🔍 商品名で検索（例：餃子・だいこん）">
 
 <div id="searchResults"></div>
@@ -227,15 +246,11 @@ footer{
 <div class="category-grid">
 
   <a class="category" href="oden.html">🍢 おでん</a>
-  <a class="category" href="ippin.html">🍳 一品料理</a>
-  <a class="category" href="yasai.html">🥬 サラダ</a>
 
   <a class="category" href="yaki.html">🔥 焼き</a>
   <a class="category" href="age.html">🍤 揚げ</a>
-  <a class="category" href="shokuji.html">🍚 ご飯・そば</a>
 
   <a class="category" href="kanmi.html">🍰 デザート</a>
-  <a href="drink.html" class="category">🍺ドリンク</a>
   <div></div>
 </div>
 
@@ -243,17 +258,45 @@ footer{
 <script>
 // 🍽 メニュー（ここを増やすだけでOK）
 const menu = [
-  { name: "大根", amount: "1個", category: "おでん", link: "oden.html" },
-  { name: "菜の花の梅おでん", amount: "1皿", category: "🍢 おでん", link: "oden.html", keywords: ["菜の花","梅"] },
-  { name: "たまご", amount: "1個", category: "おでん", link: "oden.html" },
-  { name: "牛すじ", amount: "3〜4本", category: "おでん", link: "oden.html" },
+  { name: "大根", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["だいこん"] },
+  { name: "菜の花の梅おでん", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["なのはな","うめ"] },
+  { name: "牡蠣のおでん", amount: "４つ入り", category: "🍢 おでん", link: "oden.html", keywords: ["かき"] },
+  { name: "春玉葱のおでん", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["はるたまねぎ"] },
+  { name: "レタス", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["れたす"] },
+  { name: "ブロッコリー", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["ぶろっこりー"] },
+  { name: "京水菜", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["きょうみずな"] },
+  { name: "刺身わかめ", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["さしみ"] },
+  { name: "焼きナス", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["やきなす"] },
+  { name: "トマト", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["とまと"] },
+  { name: "手作り豆腐", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["てづくりとうふ"] },
+  { name: "牛すじ", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["ぎゅう"] },
+  { name: "角煮", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["かくに"] },
+  { name: "牛ホルモン", amount: "２名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["ぎゅうほるもん"] },
+  { name: "餃子", amount: "４個", category: "🍢 おでん", link: "oden.html", keywords: ["ぎょうざ"] },
+  { name: "明石焼き", amount: "４個", category: "🍢 おでん", link: "oden.html", keywords: ["あかしやき"] },
+  { name: "豚しゃぶ", amount: "４切れ", category: "🍢 おでん", link: "oden.html", keywords: ["ぶた"] },
+  { name: "巻湯葉", amount: "４本", category: "🍢 おでん", link: "oden.html", keywords: ["まきゆば"] },
+  { name: "つくね", amount: "４個", category: "🍢 おでん", link: "oden.html", keywords: ["つくね"] },
+  { name: "里芋", amount: "３～４個", category: "🍢 おでん", link: "oden.html", keywords: ["さといも"] },
+  { name: "白滝", amount: "３個", category: "🍢 おでん", link: "oden.html", keywords: ["しらたき"] },
+  { name: "こんにゃく", amount: "１～２個", category: "🍢 おでん", link: "oden.html", keywords: ["こんにゃく"] },
+  { name: "厚揚げ", amount: "(１つを半分に切る)", category: "🍢 おでん", link: "oden.html", keywords: ["あつあげ"] },
+  { name: "ごぼ天", amount: "(１つを半分に切る)", category: "🍢 おでん", link: "oden.html", keywords: ["てん"] },
+  { name: "ちくわ", amount: "(１つを半分に切る)", category: "🍢 おでん", link: "oden.html", keywords: ["ちくわ"] },
+  { name: "玉子", amount: "１個", category: "🍢 おでん", link: "oden.html", keywords: ["たまご"] },
+  { name: "餅入り巾着", amount: "１個", category: "🍢 おでん", link: "oden.html", keywords: ["もちいりきんちゃく"] },
+  { name: "骨付きウインナー", amount: "１個", category: "🍢 おでん", link: "oden.html", keywords: ["ほねつきういんなー"] },
+  { name: "白はんぺん", amount: "２個", category: "🍢 おでん", link: "oden.html", keywords: ["しろ"] },
+  { name: "京生麩", amount: "ゆず味・よもぎ味が１個ずつ", category: "🍢 おでん", link: "oden.html", keywords: ["きょうなまふ"] },
+  { name: "大根", amount: "１個を４等分・2名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["だいこん"] },
 
-  { name: "唐揚げ", amount: "5個", category: "一品料理", link: "ippin.html" },
-  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" },
-  { name: "ポテトサラダ", amount: "1皿", category: "サラダ", link: "yasai.html" },
-  { name: "ポテトサラダ", amount: "1皿", category: "🍰 デザート", link: "yasai.html" },
-  { name: "抹茶アイス", amount: "1皿", category: "🍰 デザート", link: "kanmi.html" },
-  { name: "バニラ最中", amount: "1皿", category: "🍰 デザート", link: "kanmi.html" },
+  { name: "がんも", amount: "１個を４等分・2名以上でのシェアおすすめ", category: "🍢 おでん", link: "oden.html", keywords: ["がんも"] },
+
+
+
+  { name: "若鶏の唐揚げ", amount: "３～４個", category: "🍤 揚げ", link: "age.html",keywords: ["わかどり","からあげ"] },
+  { name: "里芋の磯部揚げ", amount: "３～４個", category: "🍤 揚げ", link: "age.html",keywords: ["さといも","いそべ"] },
+  { name: "京生麩田楽", amount: "ゆず味・よもぎ味が2切れずつの合計４切れ", category: "🔥 焼き", link: "yaki.html", keywords: ["きょうなまふ"] },
   { name: "わらびもち", amount: "5個", category: "🍰 デザート", link: "kanmi.html" },
   { name: "バナナトロン", amount: "4切れ", category: "🍰 デザート", link: "kanmi.html" }
 ];
